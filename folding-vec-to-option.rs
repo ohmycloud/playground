@@ -47,18 +47,18 @@ pub fn extract_name(raw_show: &str) -> Option<&str> {
 pub fn add_or_resign<'a>(
     parsed_shows: Option<Vec<TvShow<'a>>>,
     new_parsed_show: Option<TvShow<'a>>) 
-  -> Option<Vec<TvShow<'a>>> {
-  let mut v: Vec<TvShow> = Vec::new();
-  if let Some(shows) = parsed_shows &&
-     let Some(show) = new_parsed_show {
-     for s in shows.into_iter() {
-         v.push(s);
-     }
-     v.push(show);
-     Some(v)
-  } else {
-      None
-  }
+-> Option<Vec<TvShow<'a>>> {
+    let mut v: Vec<TvShow> = Vec::new();
+    if let Some(shows) = parsed_shows &&
+        let Some(show) = new_parsed_show {
+        for s in shows.into_iter() {
+            v.push(s);
+        }
+        v.push(show);
+        Some(v)
+    } else {
+        None
+    }
 }
 
 pub fn parse_show(raw_show: &str) -> Option<TvShow> {
@@ -67,11 +67,11 @@ pub fn parse_show(raw_show: &str) -> Option<TvShow> {
     let year_end = extract_year_end(raw_show);
 
     if let Some(name) = name &&
-       let Some(year_start) = year_start &&
-       let Some(year_end) = year_end {
-           Some(TvShow {title: name, start: year_start, end: year_end})
+        let Some(year_start) = year_start &&
+        let Some(year_end) = year_end {
+            Some(TvShow {title: name, start: year_start, end: year_end})
     } else { 
-      None 
+        None 
     }
 }
 
@@ -80,12 +80,12 @@ pub fn parse_show(raw_show: &str) -> Option<TvShow> {
 pub fn parse_shows(raw_shows: Vec<&str>) -> Option<Vec<TvShow>> {
     let initial_result: Option<Vec<TvShow>> = Some(vec![]);
     raw_shows
-      .iter()
-      .map(|x| parse_show(x))
-      .collect::<Vec<Option<TvShow>>>()
-      .into_iter()
-      .inspect(|x|println!("{:?}", x))
-      .fold(initial_result, add_or_resign)
+        .iter()
+        .map(|x| parse_show(x))
+        .collect::<Vec<Option<TvShow>>>()
+        .into_iter()
+        .inspect(|x|println!("{:?}", x))
+        .fold(initial_result, add_or_resign)
 }
 
 fn main() {

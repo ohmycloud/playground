@@ -3,10 +3,10 @@ use std::ops::DerefMut;
 use std::vec::IntoIter;
 
 fn main() {
-   let mut wrapped_vec = WrapperStruct(vec![1,2,3]);
-   wrapped_vec.iter().for_each(|v| println!("{}", v));
+    let mut wrapped_vec = WrapperStruct(vec![1,2,3]);
+    wrapped_vec.iter().for_each(|v| println!("{}", v));
 //    wrapped_vec.into_iter().for_each(|v| println!("{}", v));
-  wrapped_vec.iter_mut().for_each(|v| println!("{}", v));
+    wrapped_vec.iter_mut().for_each(|v| println!("{}", v));
 }
 
 #[derive(Debug)]
@@ -22,7 +22,7 @@ impl<T> Deref for WrapperStruct<T> {
 impl<T> DerefMut for WrapperStruct<T> {
     fn deref_mut(&mut self) -> &mut Self::Target { 
         &mut self.0
-     }
+    }
 }
 
 impl<T> WrapperStruct<T> {
