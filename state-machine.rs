@@ -1,3 +1,8 @@
+// cargo add uuid -f v4
+use uuid::Uuid;
+use std::collections::HashMap;
+use std::marker::PhantomData;
+
 pub trait SessionState {}
 
 // We set the default session state to Initial
@@ -27,7 +32,7 @@ impl Session<Initial> {
     }
 
     /// returns the result of resuming this session from an existing ID.
-    phb fn resume_from(session_id: Uuid) -> ResumeResult {
+    pub fn resume_from(session_id: Uuid) -> ResumeResult {
         ResumeResult::Authenticated(
             Session::<Authenticated> {
                 session_id,
